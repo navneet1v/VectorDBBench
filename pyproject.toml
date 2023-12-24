@@ -54,6 +54,7 @@ all = [
     "redis",
     "chromadb",
     "psycopg2",
+    "opensearch-py"
 ]
 
 qdrant = [ "qdrant-client" ]
@@ -64,6 +65,7 @@ pgvector = [ "pgvector", "sqlalchemy" ]
 pgvecto_rs = [ "psycopg2" ]
 redis = [ "redis" ]
 chromadb = [ "chromadb" ]
+opensearch = ["opensearch-py"]
 
 [project.urls]
 "repository" = "https://github.com/zilliztech/VectorDBBench"

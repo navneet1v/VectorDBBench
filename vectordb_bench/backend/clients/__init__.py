@@ -32,6 +32,7 @@ class DB(Enum):
     PgVectoRS = "PgVectoRS"
     Redis = "Redis"
     Chroma = "Chroma"
+    OpenSearch = "OpenSearch"
 
 
     @property
@@ -52,6 +53,10 @@ class DB(Enum):
         if self == DB.ElasticCloud:
             from .elastic_cloud.elastic_cloud import ElasticCloud
             return ElasticCloud
+
+        if self == DB.OpenSearch:
+            from .opensearch.opensearch import Opensearch
+            return Opensearch
 
         if self == DB.QdrantCloud:
             from .qdrant_cloud.qdrant_cloud import QdrantClient
@@ -96,6 +101,10 @@ class DB(Enum):
             from .elastic_cloud.config import ElasticCloudConfig
             return ElasticCloudConfig
 
+        if self == DB.OpenSearch:
+            from .opensearch.config import OpensearchConfig
+            return OpensearchConfig
+
         if self == DB.QdrantCloud:
             from .qdrant_cloud.config import QdrantConfig
             return QdrantConfig
@@ -132,6 +141,10 @@ class DB(Enum):
         if self == DB.ElasticCloud:
             from .elastic_cloud.config import ElasticCloudIndexConfig
             return ElasticCloudIndexConfig
+
+        if self == DB.OpenSearch:
+            from .opensearch.config import OpensearchIndexConfig
+            return OpensearchIndexConfig
 
         if self == DB.QdrantCloud:
             from .qdrant_cloud.config import QdrantIndexConfig

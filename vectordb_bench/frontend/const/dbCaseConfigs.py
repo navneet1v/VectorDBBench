@@ -111,6 +111,52 @@ CaseConfigParamInput_EFConstruction_ES = CaseConfigInput(
     },
 )
 
+CaseConfigParamInput_EFConstruction_AOS = CaseConfigInput(
+    label=CaseConfigParamType.EFConstruction,
+    inputType=InputType.Number,
+    inputConfig={
+        "min": 100,
+        "max": 1024,
+        "value": 100,
+    },
+)
+
+CaseConfigParamInput_Primaries_AOS = CaseConfigInput(
+    label=CaseConfigParamType.Primaries,
+    inputType=InputType.Number,
+    inputConfig={
+        "min": 1,
+        "max": 200,
+        "value": 3,
+    },
+)
+
+CaseConfigParamInput_Replicas_AOS = CaseConfigInput(
+    label=CaseConfigParamType.Replicas,
+    inputType=InputType.Number,
+    inputConfig={
+        "min": 0,
+        "max": 200,
+        "value": 1,
+    },
+)
+
+CaseConfigParamInput_Engine_AOS = CaseConfigInput(
+    label=CaseConfigParamType.Engine,
+    inputType=InputType.Option,
+    inputConfig={
+        "options": ["nmslib", "faiss", "lucene"],
+    },
+)
+
+CaseConfigParamInput_Filter_Supported_Engine_AOS = CaseConfigInput(
+    label=CaseConfigParamType.Engine,
+    inputType=InputType.Option,
+    inputConfig={
+        "options": ["faiss", "lucene"],
+    },
+)
+
 CaseConfigParamInput_EFConstruction_PgVectoRS = CaseConfigInput(
     label=CaseConfigParamType.EFConstruction,
     inputType=InputType.Number,
@@ -140,6 +186,26 @@ CaseConfigParamInput_NumCandidates_ES = CaseConfigInput(
         "min": 1,
         "max": 10000,
         "value": 100,
+    },
+)
+
+CaseConfigParamInput_EF_SEARCH_OS = CaseConfigInput(
+    label=CaseConfigParamType.EFSEARCH,
+    inputType=InputType.Number,
+    inputConfig={
+        "min": 1,
+        "max": 10000,
+        "value": 100,
+    },
+)
+
+CaseConfigParamInput_M_OS = CaseConfigInput(
+    label=CaseConfigParamType.M,
+    inputType=InputType.Number,
+    inputConfig={
+        "min": 4,
+        "max": 64,
+        "value": 16,
     },
 )
 
@@ -278,6 +344,25 @@ ESPerformanceConfig = [
     CaseConfigParamInput_NumCandidates_ES,
 ]
 
+OSPerformanceConfig = [
+    CaseConfigParamInput_EFConstruction_AOS,
+    CaseConfigParamInput_M_OS,
+    CaseConfigParamInput_EF_SEARCH_OS,
+    CaseConfigParamInput_Primaries_AOS,
+    CaseConfigParamInput_Replicas_AOS,
+    CaseConfigParamInput_Engine_AOS
+]
+
+
+OSFilterPerformanceConfig = [
+    CaseConfigParamInput_EFConstruction_AOS,
+    CaseConfigParamInput_M_OS,
+    CaseConfigParamInput_EF_SEARCH_OS,
+    CaseConfigParamInput_Primaries_AOS,
+    CaseConfigParamInput_Replicas_AOS,
+    CaseConfigParamInput_Filter_Supported_Engine_AOS
+]
+
 PgVectorLoadingConfig = [CaseConfigParamInput_Lists]
 PgVectorPerformanceConfig = [CaseConfigParamInput_Lists, CaseConfigParamInput_Probes]
 
@@ -351,6 +436,23 @@ CASE_CONFIG_MAP = {
         CaseType.Performance1536D500K1P: ESPerformanceConfig,
         CaseType.Performance1536D5M99P: ESPerformanceConfig,
         CaseType.Performance1536D500K99P: ESPerformanceConfig,
+    },
+    DB.OpenSearch: {
+        CaseType.CapacityDim960: OSPerformanceConfig,
+        CaseType.CapacityDim128: OSPerformanceConfig,
+        CaseType.Performance768D100M: OSPerformanceConfig,
+        CaseType.Performance768D10M: OSPerformanceConfig,
+        CaseType.Performance768D1M: OSPerformanceConfig,
+        CaseType.Performance768D10M1P: OSFilterPerformanceConfig,
+        CaseType.Performance768D1M1P: OSFilterPerformanceConfig,
+        CaseType.Performance768D10M99P: OSFilterPerformanceConfig,
+        CaseType.Performance768D1M99P: OSFilterPerformanceConfig,
+        CaseType.Performance1536D5M: OSPerformanceConfig,
+        CaseType.Performance1536D500K: OSPerformanceConfig,
+        CaseType.Performance1536D5M1P: OSFilterPerformanceConfig,
+        CaseType.Performance1536D500K1P: OSFilterPerformanceConfig,
+        CaseType.Performance1536D5M99P: OSFilterPerformanceConfig,
+        CaseType.Performance1536D500K99P: OSFilterPerformanceConfig,
     },
     DB.PgVector: {
         CaseType.CapacityDim960: PgVectorLoadingConfig,

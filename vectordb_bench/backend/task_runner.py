@@ -205,6 +205,8 @@ class CaseRunner(BaseModel):
                 raise PerformanceTimeoutError("Performance case optimize timeout") from e
             except Exception as e:
                 log.warning(f"VectorDB optimize error: {e}")
+                import traceback
+                print(traceback.format_exc())
                 raise e from None
 
     def _init_search_runner(self):
