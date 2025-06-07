@@ -15,6 +15,7 @@ class AWSOpenSearchConfig(DBConfig, BaseModel):
     password: SecretStr = ""
 
     def to_dict(self) -> dict:
+        self.user = self.user.strip(" ")
         use_ssl = self.port == 443
         http_auth = (
             (self.user, self.password.get_secret_value()) if len(self.user) != 0 and len(self.password) != 0 else ()

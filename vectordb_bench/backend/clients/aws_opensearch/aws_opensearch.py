@@ -21,9 +21,11 @@ class AWSOpenSearch(VectorDB):
         dim: int,
         db_config: dict,
         db_case_config: AWSOpenSearchIndexConfig,
+        #index_name: str = "vdb_bench_index",  # must be lowercase
         index_name: str = "vdb_bench_index",  # must be lowercase
         id_col_name: str = "_id",
-        vector_col_name: str = "embedding",
+        #vector_col_name: str = "embedding",
+        vector_col_name: str = "target_field",
         drop_old: bool = False,
         **kwargs,
     ):
